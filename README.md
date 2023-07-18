@@ -10,3 +10,5 @@ This repo is for automating the VM cloning process in Azure when you want to spi
 - Re-Add To The Domain 
 - Destroy ISO VNET and NSG 
 
+Might not be doable with terraform due to snapshots. May be best to stick with Azure Automation and Powershell. 
+
