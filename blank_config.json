@@ -1,0 +1,10 @@
+{
+    "resourceGroupName": "YourResourceGroup",
+    "virtualNetworkName": "YourVNet",
+    "newSubnetName": "NewSubnet",
+    "newNsgName": "NewNSG",
+    "vmName": "ExistingVM",
+    "newVMName": "NewVM",
+    "newVMResourceGroupName": "NewVMResourceGroup",
+    "domainName": "YourDomain.com"
+  }
