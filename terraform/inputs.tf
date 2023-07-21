@@ -4,7 +4,7 @@ variable "rgname" {
   description = "Resource Group Name"
 }
 
-variable "location" {
+variable "vnetname" {
   type        = string
-  description = "Azure Location"
+  description = "VNet Name"
 }

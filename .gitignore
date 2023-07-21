@@ -1,2 +1,4 @@
 config.json
 terraform.tfvars 
+.terraform*
+terraform 

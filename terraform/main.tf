@@ -19,24 +19,32 @@ data "azurerm_resource_group" "vnet_rg" {
 }
 
 # Virtual Network Data Source 
-data "azurerm_virtual_network" "vnet" {
-  name                = var.vnetname 
-  resource_group_name = azurerm_resource_group.vnet_rg.name 
+#data "azurerm_virtual_network" "vnet" {
+#  name                = var.vnetname 
+#  resource_group_name = data.azurerm_resource_group.vnet_rg.name 
+#}
+
+resource "azurerm_virtual_network" "vnet" {
+  name                = "test-vnet"
+  location            = data.azurerm_resource_group.vnet_rg.location
+  resource_group_name = data.azurerm_resource_group.vnet_rg.name
+  address_space       = ["173.0.0.0/24"]
+  #dns_servers         = ["10.0.0.4", "10.0.0.5"]
 }
 
 # Create New Subnet with NSG
 resource "azurerm_subnet" "tmp_subnet" {
-  name                 = var.subname
-  virtual_network_name = azurerm_virtual_network.vnet.id
-  resource_group_name  = azurerm_resource_group.vnet_rg.name
+  name                 = "tmp_iso_sn"
+  virtual_network_name = azurerm_virtual_network.vnet.name
+  resource_group_name  = data.azurerm_resource_group.vnet_rg.name
   address_prefixes     = ["173.30.0.0/24"]
 }
 
 # Create Network Security Group (NSG)
 resource "azurerm_network_security_group" "temp_nsg" {
-  name                = var.nsgname
-  resource_group_name = azurerm_resource_group.dvnet_rg.name
-  location            = azurerm_resource_group.dvnet_rg.location 
+  name                = "tmp_iso_nsg"
+  resource_group_name = data.azurerm_resource_group.vnet_rg.name
+  location            = data.azurerm_resource_group.vnet_rg.location 
 }
 
 # Associate NSG with Subnet 
